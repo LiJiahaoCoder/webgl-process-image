@@ -20,7 +20,7 @@ const config = {
   entry: "./src/index.tsx",
   output: {
     path: path.resolve(__dirname, "./dist"),
-    publicPath: "/",
+    publicPath: __DEV__ ? "/" : "https://lijiahaocoder.github.io/webgl-process-image/",
     filename: __DEV__ ? "[name].js" : "js/[name].[contenthash:8].js",
     chunkFilename: __DEV__ ? "[name].js" : "js/[name].[contenthash:8].js",
   },
