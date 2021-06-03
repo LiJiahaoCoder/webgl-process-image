@@ -1,4 +1,8 @@
-export async function render (gl: WebGL2RenderingContext, program: WebGLProgram, image: string) {
+export async function render(
+  gl: WebGL2RenderingContext,
+  program: WebGLProgram,
+  image: string
+) {
   createVAO(gl);
   const { positionBuffer } = initializePosition(gl, program);
   await initializeTexture(gl, program, image);
@@ -6,12 +10,12 @@ export async function render (gl: WebGL2RenderingContext, program: WebGLProgram,
   initializeProgram(gl, program, positionBuffer);
 }
 
-function createVAO (gl: WebGL2RenderingContext) {
+function createVAO(gl: WebGL2RenderingContext) {
   const vao = gl.createVertexArray();
   gl.bindVertexArray(vao);
 }
 
-function initializePosition (gl: WebGL2RenderingContext, program: WebGLProgram) {
+function initializePosition(gl: WebGL2RenderingContext, program: WebGLProgram) {
   const positionAttributeLocation = gl.getAttribLocation(program, 'a_Position');
 
   const positionBuffer = gl.createBuffer();
@@ -22,19 +26,20 @@ function initializePosition (gl: WebGL2RenderingContext, program: WebGLProgram) 
   return { positionBuffer };
 }
 
-async function initializeTexture (gl: WebGL2RenderingContext, program: WebGLProgram, path: string) {
+async function initializeTexture(
+  gl: WebGL2RenderingContext,
+  program: WebGLProgram,
+  path: string
+) {
   const texCoordAttributeLocation = gl.getAttribLocation(program, 'a_TexCoord');
 
   const texCoordBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-    0.0,  0.0,
-    1.0,  0.0,
-    0.0,  1.0,
-    0.0,  1.0,
-    1.0,  0.0,
-    1.0,  1.0,
-  ]), gl.STATIC_DRAW);
+  gl.bufferData(
+    gl.ARRAY_BUFFER,
+    new Float32Array([0, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 1]),
+    gl.STATIC_DRAW
+  );
   gl.enableVertexAttribArray(texCoordAttributeLocation);
   gl.vertexAttribPointer(texCoordAttributeLocation, 2, gl.FLOAT, false, 0, 0);
 
@@ -47,17 +52,19 @@ async function initializeTexture (gl: WebGL2RenderingContext, program: WebGLProg
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
   const image = await loadImage(path);
   gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-
-  return image;
 }
 
-function initializeCanvas (gl: WebGL2RenderingContext) {
+function initializeCanvas(gl: WebGL2RenderingContext) {
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
   gl.clearColor(0, 0, 0, 0);
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 }
 
-function initializeProgram (gl: WebGL2RenderingContext, program: WebGLProgram, buffer: WebGLBuffer | null) {
+function initializeProgram(
+  gl: WebGL2RenderingContext,
+  program: WebGLProgram,
+  buffer: WebGLBuffer | null
+) {
   const resolutionLocation = gl.getUniformLocation(program, 'u_Resolution');
   const imageLocation = gl.getUniformLocation(program, 'u_Image');
 
@@ -77,26 +84,20 @@ function setRectangle(gl: WebGL2RenderingContext) {
   const y1 = 0;
   const y2 = gl.canvas.height;
 
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-    x1, y1,
-    x2, y1,
-    x1, y2,
-    x1, y2,
-    x2, y1,
-    x2, y2,
-  ]), gl.STATIC_DRAW);
+  gl.bufferData(
+    gl.ARRAY_BUFFER,
+    new Float32Array([x1, y1, x2, y1, x1, y2, x1, y2, x2, y1, x2, y2]),
+    gl.STATIC_DRAW
+  );
 }
 
-function loadImage (path: string): Promise<HTMLImageElement> {
+function loadImage(path: string): Promise<HTMLImageElement> {
   const image = new Image();
   image.src = path;
 
   return new Promise((resolve) => {
-    image.addEventListener(
-      'load',
-      function() {
-        resolve(image);
-      },
-    );
+    image.addEventListener('load', function () {
+      resolve(image);
+    });
   });
 }

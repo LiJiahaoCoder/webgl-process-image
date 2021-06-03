@@ -45,6 +45,14 @@ const Sider = ({ onChangeType }: Props) => {
         >
           交换红蓝通道
         </li>
+        <li
+          className={LIST_ITEM_CLASS}
+          onClick={() => {
+            onChangeType(ImageType.Blur);
+          }}
+        >
+          高斯模糊
+        </li>
       </ul>
     </section>
   );
