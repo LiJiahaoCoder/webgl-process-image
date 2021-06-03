@@ -1,0 +1,85 @@
+{
+  "name": "jiachang",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "commit": "git-cz",
+    "lint:script": "cross-env NODE_ENV=production eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:style": "cross-env NODE_ENV=production stylelint \"src/**/*.less\"",
+    "start": "cross-env NODE_ENV=development webpack serve --hot",
+    "build": "cross-env NODE_ENV=production webpack",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "bootstrap": "^5.0.1",
+    "classnames": "^2.3.1",
+    "core-js": "^3.13.1",
+    "normalize.css": "^8.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/plugin-transform-runtime": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
+    "@types/react-dom": "^17.0.5",
+    "autoprefixer": "^10.2.6",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "commitizen": "^4.2.4",
+    "confusing-browser-globals": "^1.0.10",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.6",
+    "css-minimizer-webpack-plugin": "^3.0.0",
+    "eslint": "^7.26.0",
+    "eslint-config-silent": "^0.25.0",
+    "eslint-config-xo-react": "^0.25.0",
+    "eslint-import-resolver-typescript": "^2.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.1",
+    "husky": "^6.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "less": "^4.1.1",
+    "less-loader": "^9.0.0",
+    "lint-staged": "^11.0.0",
+    "mini-css-extract-plugin": "^1.6.0",
+    "postcss": "^8.3.0",
+    "postcss-loader": "^5.3.0",
+    "prettier": "^2.3.0",
+    "purgecss-webpack-plugin": "^4.0.3",
+    "raw-loader": "^4.0.2",
+    "react-refresh": "^0.10.0",
+    "script-ext-html-webpack-plugin": "^2.1.5",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-css-modules": "^2.2.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-xo": "^0.20.0",
+    "stylelint-prettier": "^1.2.0",
+    "typescript": "^4.2.4",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpackbar": "^5.0.0-3",
+    "xo": "^0.40.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
