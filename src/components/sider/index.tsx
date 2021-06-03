@@ -32,6 +32,14 @@ const Sider = ({ onChangeType }: Props) => {
         <li
           className={LIST_ITEM_CLASS}
           onClick={() => {
+            onChangeType(ImageType.Gray);
+          }}
+        >
+          灰白
+        </li>
+        <li
+          className={LIST_ITEM_CLASS}
+          onClick={() => {
             onChangeType(ImageType.RevertBlueAndRed);
           }}
         >

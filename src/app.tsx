@@ -6,8 +6,8 @@ import { ImageType } from '@/types/image';
 const App = () => {
   const [type, setType] = useState<ImageType>(ImageType.Origin);
 
-  const onChangeType = (_type: ImageType) => {
-    setType(_type);
+  const onChangeType = (t: ImageType) => {
+    setType(t);
   };
 
   return (
