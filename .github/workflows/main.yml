@@ -1,4 +1,4 @@
-name: CI
+name: CI & CD
 
 on:
   push:
@@ -13,19 +13,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node
+        uses: actions/setup-node@v2
         with:
-          node-version: '12.x'
+            node-version: '16'
+          
+      - name: Install & Build
+        run: |
+            yarn install
+            yarn build
 
-      - name: Install Dependencies
-        run: yarn install
-
-      - name: Build and Deploy
-        uses: JamesIves/github-pages-deploy-action@master
-        env:
-          ACCESS_TOKEN: ${{ secrets.DEPLOY_KEY }}
-          BRANCH: gh-pages
-          FOLDER: dist
-          BUILD_SCRIPT: yarn build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+            publish_dir: ./dist
+            personal_token: ${{ secrets.DEPLOY_KEY }}
+            force_orphan: true
         
