@@ -1,9 +1,9 @@
 export async function render (gl: WebGL2RenderingContext, program: WebGLProgram, image: string) {
   createVAO(gl);
   const { positionBuffer } = initializePosition(gl, program);
-  const imgEle = await initializeTexture(gl, program, image);
+  await initializeTexture(gl, program, image);
   initializeCanvas(gl);
-  initializeProgram(gl, program, positionBuffer, imgEle);
+  initializeProgram(gl, program, positionBuffer);
 }
 
 function createVAO (gl: WebGL2RenderingContext) {
@@ -57,7 +57,7 @@ function initializeCanvas (gl: WebGL2RenderingContext) {
   gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 }
 
-function initializeProgram (gl: WebGL2RenderingContext, program: WebGLProgram, buffer: WebGLBuffer | null, image: HTMLImageElement) {
+function initializeProgram (gl: WebGL2RenderingContext, program: WebGLProgram, buffer: WebGLBuffer | null) {
   const resolutionLocation = gl.getUniformLocation(program, 'u_Resolution');
   const imageLocation = gl.getUniformLocation(program, 'u_Image');
 
@@ -65,34 +65,17 @@ function initializeProgram (gl: WebGL2RenderingContext, program: WebGLProgram, b
   gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height);
   gl.uniform1i(imageLocation, 0);
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  setRectangle(
-    gl,
-    {
-      x: 0,
-      y: 0,
-      width: image.width,
-      height: image.height,
-    },
-  );
+
+  setRectangle(gl);
 
   gl.drawArrays(gl.TRIANGLES, 0, 6);
 }
 
-function setRectangle(gl: WebGL2RenderingContext, {
-  x,
-  y,
-  width,
-  height
-}: {
-  x: number,
-  y: number,
-  width: number,
-  height: number,
-}) {
-  const x1 = x;
-  const x2 = x + width;
-  const y1 = y;
-  const y2 = y + height;
+function setRectangle(gl: WebGL2RenderingContext) {
+  const x1 = 0;
+  const x2 = gl.canvas.width;
+  const y1 = 0;
+  const y2 = gl.canvas.height;
 
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
     x1, y1,
