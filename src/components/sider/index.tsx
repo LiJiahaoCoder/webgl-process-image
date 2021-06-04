@@ -53,6 +53,14 @@ const Sider = ({ onChangeType }: Props) => {
         >
           高斯模糊
         </li>
+        <li
+          className={LIST_ITEM_CLASS}
+          onClick={() => {
+            onChangeType(ImageType.Random);
+          }}
+        >
+          马赛克
+        </li>
       </ul>
     </section>
   );

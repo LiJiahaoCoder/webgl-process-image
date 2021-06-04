@@ -3,6 +3,7 @@ import OriginFS from '@/shaders/fragment.glsl';
 import BGRAFS from '@/shaders/bgra-fragment.glsl';
 import GrayFS from '@/shaders/gray-fragment.glsl';
 import BlurFS from '@/shaders/blur-fragment.glsl';
+import RandomFS from '@/shaders/random-fragment.glsl';
 import { ImageType } from '@/types/image';
 
 export const ShadersMap: Record<ImageType, string[]> = {
@@ -10,4 +11,5 @@ export const ShadersMap: Record<ImageType, string[]> = {
   [ImageType.Gray]: [VS, GrayFS],
   [ImageType.RevertBlueAndRed]: [VS, BGRAFS],
   [ImageType.Blur]: [VS, BlurFS],
+  [ImageType.Random]: [VS, RandomFS],
 };

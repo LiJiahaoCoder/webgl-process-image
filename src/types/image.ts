@@ -3,4 +3,5 @@ export enum ImageType {
   Gray = 'Gray',
   RevertBlueAndRed = 'RevertBlueAndRed',
   Blur = 'Blur',
+  Random = 'Random',
 }
