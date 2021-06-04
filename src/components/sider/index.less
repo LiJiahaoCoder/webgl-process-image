@@ -1,5 +1,7 @@
-.width {
+.sider {
   width: 15vw;
+  height: 100%;
+  padding-top: 3rem;
 }
 
 .listItem {
@@ -8,4 +10,24 @@
 
 .listItem:hover {
   cursor: pointer;
+}
+
+@media screen and (max-width: 750px) {
+  .sider {
+    width: 100%;
+    height: 6vh;
+    padding-top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .list {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .listItem {
+    border: none;
+  }
 }

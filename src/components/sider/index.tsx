@@ -4,7 +4,7 @@ import { ImageType } from '@/types/image';
 import styles from './index.less';
 
 const LIST_ITEM_CLASS = classnames(
-  'list-group-item bg-transparent',
+  'list-group-item bg-transparent text-truncate',
   styles.listItem
 );
 
@@ -16,11 +16,11 @@ const Sider = ({ onChangeType }: Props) => {
   return (
     <section
       className={classnames(
-        'h-100 position-fixed start-0 top-0 bg-secondary pt-5',
-        styles.width
+        'position-fixed start-0 top-0 bg-secondary',
+        styles.sider
       )}
     >
-      <ul className="list-group list-group-flush">
+      <ul className={classnames('list-group list-group-flush', styles.list)}>
         <li
           className={LIST_ITEM_CLASS}
           onClick={() => {
