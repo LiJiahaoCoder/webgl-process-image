@@ -15,6 +15,7 @@ void main() {
   vec2 st = v_TexCoord.xy / u_Resolution.xy * 20000.0;
   vec2 ipos = floor(st);
   vec3 color = vec3(random(ipos));
+  vec4 tex = texture(u_Image, v_TexCoord);
 
-  outColor = vec4(color, 1.0);
+  outColor = vec4(tex.rgb * 0.2 + color * 0.8, 1.0);
 }
